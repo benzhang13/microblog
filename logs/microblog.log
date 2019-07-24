@@ -1,55 +1,95 @@
-2019-07-15 15:39:50,734 ERROR: Exception on /user/test_user [GET] [in /Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/app.py:1780]
+2019-07-24 17:39:08,057 ERROR: Exception on /favicon.ico [GET] [in /Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/app.py:1780]
+Traceback (most recent call last):
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 1786, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
 Traceback (most recent call last):
   File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 2311, in wsgi_app
     response = self.full_dispatch_request()
   File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1834, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1737, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/_compat.py", line 36, in reraise
-    raise value
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1832, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1818, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/EZ/Documents/git_projects/microblog/app/routes.py", line 83, in user_profile
-    return render_template('user_profile.html', user=user, posts=posts.items, next_url=next_url, prev_url=prev_url)
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/templating.py", line 135, in render_template
-    context, ctx.app)
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/templating.py", line 117, in _render
-    rv = template.render(context)
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1732, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1661, in handle_http_exception
+    return handler(e)
+  File "/Users/EZ/Documents/git_projects/microblog/app/errors.py", line 7, in not_found_error
+    return render_template('404.html'), 404
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask/templating.py", line 134, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 591, in compile
+    self.handle_exception(exc_info, source_hint=source_hint)
   File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 780, in handle_exception
     reraise(exc_type, exc_value, tb)
   File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
     raise value.with_traceback(tb)
-  File "/Users/EZ/Documents/git_projects/microblog/app/templates/user_profile.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/EZ/Documents/git_projects/microblog/app/templates/base.html", line 1, in top-level template code
-    {% extends "bootstrap/base.html" %}
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
-    {% block doc -%}
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
-    {%- block html %}
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
-    {% block body -%}
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
-    {% block content -%}
-  File "/Users/EZ/Documents/git_projects/microblog/app/templates/base.html", line 51, in block "content"
-    {% block app_content %}{% endblock %}
-  File "/Users/EZ/Documents/git_projects/microblog/app/templates/user_profile.html", line 14, in block "app_content"
-    <p>{{ _('%(count)s followers', followers=user.followers.count()) }}, {{ _('%(count)s following', count=user.followed.count()) }}</p>
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/ext.py", line 134, in _gettext_alias
-    return __context.call(__context.resolve('gettext'), *args, **kwargs)
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/ext.py", line 143, in gettext
-    return rv % variables
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/markupsafe/__init__.py", line 102, in __mod__
-    return self.__class__(text_type.__mod__(self, arg))
-  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/markupsafe/__init__.py", line 301, in __getitem__
-    return _MarkupEscapeHelper(self.obj[item], self.escape)
-KeyError: 'count'
+  File "/Users/EZ/Documents/git_projects/microblog/app/templates/404.html", line 5, in template
+    <p>{{ _('What you're looking for doesn't exist, dummy.') }}</p>
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 497, in _parse
+    return Parser(self, source, name, encode_filename(filename)).parse()
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 901, in parse
+    result = nodes.Template(self.subparse(), lineno=1)
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 883, in subparse
+    rv = self.parse_statement()
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 130, in parse_statement
+    return getattr(self, 'parse_' + self.stream.current.value)()
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 268, in parse_block
+    node.body = self.parse_statements(('name:endblock',), drop_needle=True)
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 165, in parse_statements
+    result = self.subparse(end_tokens)
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 875, in subparse
+    add_data(self.parse_tuple(with_condexpr=True))
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 620, in parse_tuple
+    args.append(parse())
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 432, in parse_expression
+    return self.parse_condexpr()
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 437, in parse_condexpr
+    expr1 = self.parse_or()
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 450, in parse_or
+    left = self.parse_and()
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 459, in parse_and
+    left = self.parse_not()
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 470, in parse_not
+    return self.parse_compare()
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 474, in parse_compare
+    expr = self.parse_math1()
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 496, in parse_math1
+    left = self.parse_concat()
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 507, in parse_concat
+    args = [self.parse_math2()]
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 517, in parse_math2
+    left = self.parse_pow()
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 528, in parse_pow
+    left = self.parse_unary()
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 547, in parse_unary
+    node = self.parse_postfix(node)
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 676, in parse_postfix
+    node = self.parse_call(node)
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/parser.py", line 767, in parse_call
+    self.stream.expect('comma')
+  File "/Users/EZ/Documents/git_projects/microblog/venv/lib/python3.7/site-packages/jinja2/lexer.py", line 384, in expect
+    self.name, self.filename)
+jinja2.exceptions.TemplateSyntaxError: expected token ',', got 're'
+2019-07-24 17:43:00,413 INFO: Microblog startup [in /Users/EZ/Documents/git_projects/microblog/app/__init__.py:49]
+2019-07-24 17:43:52,050 INFO: Microblog startup [in /Users/EZ/Documents/git_projects/microblog/app/__init__.py:49]
+2019-07-24 17:46:14,407 INFO: Microblog startup [in /Users/EZ/Documents/git_projects/microblog/app/__init__.py:49]
+2019-07-24 17:48:00,469 INFO: Microblog startup [in /Users/EZ/Documents/git_projects/microblog/app/__init__.py:49]
+2019-07-24 19:37:47,982 INFO: Microblog startup [in /Users/EZ/Documents/git_projects/microblog/app/__init__.py:68]
