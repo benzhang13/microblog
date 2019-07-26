@@ -1,2 +1,2 @@
 # microblog
-from miguel grinberg's flask tutorial
+from miguel grinberg's flask tutorial, with a few extras!
