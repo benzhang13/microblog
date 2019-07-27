@@ -51,3 +51,5 @@ sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: post
 [SQL: SELECT post.id AS post_id, post.body AS post_body, post.timestamp AS post_timestamp, post.user_id AS post_user_id, post.language AS post_language 
 FROM post]
 (Background on this error at: http://sqlalche.me/e/e3q8)
+2019-07-26 18:14:00,880 INFO: Microblog startup [in /Users/EZ/Documents/git_projects/microblog/app/__init__.py:70]
+2019-07-26 19:09:59,319 INFO: Microblog startup [in /Users/EZ/Documents/git_projects/microblog/app/__init__.py:70]
