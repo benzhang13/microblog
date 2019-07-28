@@ -84,6 +84,7 @@ def follow(username):
     flash(_('You are now following %(username)s!', username=username))
     return redirect(url_for('main.user_profile', username=username))
 
+
 @bp.route('/unfollow/<username>')
 def unfollow(username):
     user = User.query.filter_by(username=username).first()
@@ -98,11 +99,13 @@ def unfollow(username):
     flash('You have unfollowed %(username)s', username=username)
     return redirect(url_for('main.user_profile', username=username))
 
+
 @bp.route('/translate', methods=['POST'])
 @login_required
 def translate_text():
     return jsonify({'text': translate.translate(request.form['text'], request.form['source_language'],
                                                 request.form['dest_language'])})
+
 
 @bp.route('/search')
 @login_required
@@ -115,6 +118,14 @@ def search():
         if total > page * current_app.config['POSTS_PER_PAGE'] else None
     prev_url = url_for('main.search', q=g.search_form.q.data, page=page-1) if page > 1 else None
     return render_template('search.html', title=_('Search'), posts=posts, next_url=next_url, prev_url=prev_url)
+
+
+@bp.route('/user/<username>/popup')
+@login_required
+def user_popup(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    return render_template('user_popup.html', user=user)
+
 
 @bp.before_app_request
 def before_request():
