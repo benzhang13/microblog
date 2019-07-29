@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
     <table>
@@ -11,13 +12,23 @@
         </tr>
     </table>
     <br>
-    <p>{{ _('%(count)s followers', count=user.followers.count()) }}, {{ _('%(count)s following', count=user.followed.count()) }}</p>
+    <p>
+        <a href="{{ url_for('main.followers', username=user.username) }}">{{ _('%(count)s follower(s)', count=user.followers.count()) }}</a>,
+        <a href="{{ url_for('main.following', username=user.username) }}">{{ _('%(count)s following', count=user.followed.count()) }}</a>
+    </p>
     {% if user == current_user %}
     <p><a href="{{ url_for('main.edit_profile') }}">{{ _('Edit Profile') }}</a></p>
     {% elif current_user.is_following(user) %}
     <p><a href="{{ url_for('main.unfollow', username=user.username) }}">{{ _('Unfollow') }}</a></p>
     {% else %}
     <p><a href="{{ url_for('main.follow', username=user.username) }}">{{ _('Follow') }}</a></p>
+    {% endif %}
+    {% if user != current_user %}
+    <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form) }}
+        </div>
+    </div>
     {% endif %}
     <hr>
     {% for post in posts %}
