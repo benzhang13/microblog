@@ -53,7 +53,7 @@ def user_profile(username):
 
     form = MessageForm()
     if form.validate_on_submit():
-        msg = Message(recipient=user, author=current_user, body=form.message.data)
+        msg = Message(recipient=user, author=current_user, body=form.message.data, type='message')
         db.session.add(msg)
         db.session.commit()
         user.add_notification('unread_message_count', user.new_messages())
@@ -92,6 +92,14 @@ def follow(username):
         return redirect(url_for('main.index'))
     current_user.follow(user)
     db.session.commit()
+
+    msg = Message(recipient=user, author=current_user, body=current_user.username + ' followed you!',
+                  type='follow_notification')
+    db.session.add(msg)
+    db.session.commit()
+    user.add_notification('unread_message_count', user.new_messages())
+    db.session.commit()
+
     flash(_('You are now following %(username)s!', username=username))
     return redirect(url_for('main.user_profile', username=username))
 

@@ -46,9 +46,9 @@ def create_user():
     data = request.get_json() or {}
     if 'username' not in data or 'email' not in data or 'password' not in data:
         return bad_request('must include username, email, and password fields')
-    if User.query.filter_by(username=data['username'].first()):
+    if User.query.filter_by(username=data['username']).first():
         return bad_request('username already in use')
-    if User.query.filter_by(email=data['email'].first()):
+    if User.query.filter_by(email=data['email']).first():
         return bad_request('email already in use')
     user = User()
     user.from_dict(data, new_user=True)
@@ -63,7 +63,7 @@ def create_user():
 @bp.route('/api/users/<int:id>', methods=['PUT'])
 @token_auth.login_required
 def update_user(id):
-    if g.current_user != id:
+    if g.current_user.id != id:
         abort(403)
     user = User.query.get_or_404(id)
     data = request.get_json() or {}

@@ -3,7 +3,11 @@
 {% block app_content %}
     <h1>{{ _('Messages') }}</h1>
     {% for post in messages %}
-        {% include '_post.html' %}
+        {% if post.type == 'follow_notification' %}
+            {% include '_follow_notification.html' %}
+        {% else %}
+            {% include '_post.html' %}
+        {% endif %}
     {% endfor %}
     <nav aria-label="...">
         <ul class="pager">
