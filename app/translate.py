@@ -1,5 +1,6 @@
 import json
 import requests
+import uuid
 from flask_babel import _
 from flask import current_app
 
