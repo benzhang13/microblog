@@ -82,6 +82,7 @@ def edit_profile():
 
 
 @bp.route('/follow/<username>')
+@login_required
 def follow(username):
     user = User.query.filter_by(username=username).first()
     if user is None:
@@ -105,6 +106,7 @@ def follow(username):
 
 
 @bp.route('/unfollow/<username>')
+@login_required
 def unfollow(username):
     user = User.query.filter_by(username=username).first()
     if user is None:
@@ -117,6 +119,19 @@ def unfollow(username):
     db.session.commit()
     flash(_('You have unfollowed %(username)s', username=username))
     return redirect(url_for('main.user_profile', username=username))
+
+
+@bp.route('/delete_post/<int:id>', methods=['GET', 'DELETE'])
+@login_required
+def delete_post(id):
+    post = Post.query.get_or_404(id)
+    if current_user != post.author:
+        flash(_('You can only delete your own posts'))
+        return redirect(url_for('main.index'))
+    db.session.delete(post)
+    db.session.commit()
+    flash(_('Your post has been deleted'))
+    return redirect(url_for('main.index'))
 
 
 @bp.route('/translate', methods=['POST'])
