@@ -23,27 +23,28 @@
             </td>
             {% if current_user == post.author %}
             <td>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletePost{{ post.id }}Modal">Delete Post</button>
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletePost{{ post.id }}Modal">Delete Post</button>
             </td>
             {% endif %}
         </tr>
     </table>
 
     <!-- Post Deletion Modal -->
-<div class="modal fade" id="deletePost{{ post.id }}Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="deletePost{{ post.id }}Modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Are you sure?</h5>
+      <div class="modal-header" id="modalLabel">
+          <b>Are you sure?</b>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Are you sure you want to delete this post? If you do, it will be gone forever! There is no way to undo this. If you do not wish to delete this post, exit this popup.
+        Are you sure you want to delete this post? If you do, it will be gone forever!
       </div>
       <div class="modal-footer">
-          <a href="{{ url_for('main.delete_post', id=post.id) }}"><button type="button" class="btn btn-danger" onclick="">Delete</button></a>
+          <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+          <a href="{{ url_for('main.delete_post', id=post.id) }}"><button type="button" class="btn btn-danger">Delete</button></a>
       </div>
     </div>
   </div>
